@@ -41,8 +41,43 @@ function HomePage() {
       </div>
       <div className="grid-container-items">
         {items.map((item) => (
-          <div className="grid-item" key={item}>
-            <div>Product {item}</div>
+          <div
+            onMouseOver={() => {
+              const element = document.getElementById(`grid-item-hover-${item}`)
+              if (element) {
+                element.style.overflow = 'hidden';
+                element.style.height = '30px';
+                element.style.transition = '.5s ease';
+
+              }
+            }            }
+            onMouseOut={() => {
+              const element = document.getElementById(`grid-item-hover-${item}`)
+              if (element) {
+                element.style.overflow = 'hidden';
+                element.style.height = '0px';
+                element.style.transition = '.5s ease';
+              }
+            }}
+            className="grid-items"
+            key={item}>
+            <span>{item}</span>
+            <div className="grid-item-price">
+              COP 18.200.000
+            </div>
+            <div
+              style={
+                {
+                  background: '#FA6C19',
+                  gridColumn: '1 / 7',
+                  gridRow: '7',
+                  overflow: 'hidden',
+                  height: '0px',
+                }
+              }
+              id={`grid-item-hover-${item}`}>
+              Nombre Producto - {item}
+            </div>
           </div>
         ))}
       </div>
