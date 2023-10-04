@@ -6,9 +6,9 @@ import Navbar from './components/Navbar';
 const App = () => {
 	return (
 		<Routes>
-			<Route path="/" element={<Navbar />}>
-				<Route index element={<HomePage />} />
+			<Route element={<Navbar />} >
 				<Route path="/home" element={<HomePage />} />
+				<Route path="/" element={<HomePage />} />
 			</Route>
 		</Routes>
 	);
