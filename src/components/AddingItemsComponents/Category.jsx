@@ -9,7 +9,7 @@ function Category() {
   }, []);
   return (
     <div>
-      hola
+      cat
     </div>
   );
 }
