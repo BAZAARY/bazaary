@@ -10,6 +10,7 @@ import Specs from "./components/AddingItemsComponents/Specs";
 import Preview from "./components/AddingItemsComponents/Preview";
 import ShoppingCart from "./pages/shoppingCart";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const App = () => {
 	return (
@@ -27,6 +28,7 @@ const App = () => {
 				/
 				<Route path="/cart" element={<ShoppingCart />} />
 				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
 			</Route>
 		</Routes>
 	);
