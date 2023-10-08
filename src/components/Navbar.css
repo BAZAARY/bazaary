@@ -29,27 +29,14 @@
 /* Estilos para la barra de búsqueda */
 .search-bar {
   flex: 1;
-  margin-left: 30px;
   position: relative;
-
-
-  /* .search-bar 
-    flex: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;  Alinea el contenido horizontalmente en la barra de búsqueda
-    align-items: center; 
-  */
 }
 
 .search-bar input[type="text"] {
-  min-width: 55px;
   padding: 5px;
-  min-width: 80px;
-  width: 45%;
   /* Use 100% width for the input */
   border: none;
-  border-radius: 50px;
+  border-radius: 10px;
   background-color: #fff;
   /* Darker background color */
   color: #fff;
