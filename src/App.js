@@ -8,6 +8,7 @@ import Descripcion from './components/AddingItemsComponents/Description';
 import Media from './components/AddingItemsComponents/Media';
 import Specs from './components/AddingItemsComponents/Specs';
 import Preview from './components/AddingItemsComponents/Preview';
+import ShoppingCart from './pages/shoppingCart';
 
 const App = () => {
 	return (
@@ -22,6 +23,7 @@ const App = () => {
 					<Route path="/addingitem/specs" element={<Specs />} />
 					<Route path="/addingitem/preview" element={<Preview />} />
 				</Route>/
+				<Route path="/cart" element={<ShoppingCart/>}/>
 			</Route>
 		</Routes>
 	);
