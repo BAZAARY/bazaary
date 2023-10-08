@@ -13,6 +13,9 @@ function Navbar() {
         <div className="circular-logo">
           <img src={LogoImage} alt="Logo" />
         </div>
+        <div className='font-text text-3xl pl-5 hidden md:block '>
+          Bazaary
+        </div>
         <div className="search-bar">
           <input id="search-bar-input" type="text" placeholder=" &#8981; Buscar..." className="font-text input-text" />
         </div>
