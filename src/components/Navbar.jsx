@@ -13,7 +13,7 @@ function Navbar() {
         <div className="circular-logo">
           <img src={LogoImage} alt="Logo" />
         </div>
-        <div className='font-text text-3xl pl-5'>
+        <div className='font-text text-3xl pl-5 hidden md:block '>
           Bazaary
         </div>
         <div className="search-bar">
