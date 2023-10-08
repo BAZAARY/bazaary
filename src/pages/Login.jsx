@@ -92,7 +92,7 @@ const Login = () => {
 			<div className="md:flex md:flex-row w-full">
 				{/* PARTE DERECHA */}
 				<form className="flex w-full justify-center items-center">
-					<div className="flex p-4 flex flex-col justify-center h-full w-full md:bg-orange-100 max-w-md border-2 border-gray-100 rounded-3xl mt-8 md:mt-16">
+					<div className="flex p-4 flex flex-col justify-center h-full w-full md:bg-[#ffdcb7] max-w-md border-2 border-gray-100 rounded-3xl mt-8 md:mt-16">
 						{/* CAMPO DE EMAIL, PASSWORD, BOTON DE LOGIN */}
 						<div className="flex flex-col items-center justify-center">
 							<p className="font-bold text-3xl py-8">Iniciar sesión</p>
@@ -118,7 +118,7 @@ const Login = () => {
 								<button
 									id="submit"
 									type="submit"
-									className="max-w-sm bg-orange-400 text-white w-full h-full text-center border-2 rounded-xl border focus:outline-none py-2 mb-4"
+									className="max-w-sm bg-orange-400 text-white w-full h-full text-center border-2 rounded-xl md:border-0 focus:outline-none py-2 mb-4"
 									// onSubmit={(e) => e.preventDefault()}
 								>
 									Ingresar
