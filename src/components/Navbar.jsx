@@ -13,8 +13,11 @@ function Navbar() {
         <div className="circular-logo">
           <img src={LogoImage} alt="Logo" />
         </div>
+        <div className='font-text text-3xl pl-5'>
+          Bazaary
+        </div>
         <div className="search-bar">
-          <input id="search-bar-input" type="text" placeholder=" &#8981; Buscar..." className="input-text" />
+          <input id="search-bar-input" type="text" placeholder=" &#8981; Buscar..." className="font-text input-text" />
         </div>
         <div className="for-sale">
           <a href={"/addingitem/category"}>

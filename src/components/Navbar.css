@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: #fd9200;
   color: #fff;
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -29,20 +29,28 @@
 /* Estilos para la barra de búsqueda */
 .search-bar {
   flex: 1;
-  margin-right: 0px ;
   margin-left: 30px;
   position: relative;
+
+
+  /* .search-bar 
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;  Alinea el contenido horizontalmente en la barra de búsqueda
+    align-items: center; 
+  */
 }
 
 .search-bar input[type="text"] {
   min-width: 55px;
   padding: 5px;
   min-width: 80px;
-  width: 50%;
+  width: 45%;
   /* Use 100% width for the input */
   border: none;
-  border-radius: 10px;
-  background-color: #444;
+  border-radius: 50px;
+  background-color: #fff;
   /* Darker background color */
   color: #fff;
   outline: none;
