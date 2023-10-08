@@ -14,7 +14,7 @@ function Navbar() {
           <img src={LogoImage} alt="Logo" />
         </div>
         <div className="search-bar">
-          <input id="search-bar-input" type="text" placeholder=" &#8981; Buscar..." className="input-text" />
+          <input id="search-bar-input" type="text" placeholder=" &#8981; Buscar..." className="font-text input-text" />
         </div>
         <div className="for-sale">
           <a href={"/addingitem/category"}>
