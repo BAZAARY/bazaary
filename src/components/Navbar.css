@@ -91,6 +91,7 @@
 
 .for-sale:hover,
 .shopping-cart:hover,
+.circular-logo:hover,
 .profile-picture:hover {
 	cursor: pointer;
 }

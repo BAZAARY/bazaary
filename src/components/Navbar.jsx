@@ -4,13 +4,15 @@ import CartImage from './img/cart.png'
 import ProfileImage from './img/profile-picture.webp'
 import SellImage from './img/sell.png'
 import './Navbar.css'
+import { useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
 function Navbar() {
+  const navigate = useNavigate()
   return (
     <>
       <div className="navbar">
-        <div className="circular-logo hidden md:block">
+        <div onClick={()=> navigate("/")} className="circular-logo hidden md:block">
           <img src={LogoImage} alt="Logo" />
         </div>
         <div className='font-text text-3xl pl-5 hidden md:block '>
@@ -24,7 +26,7 @@ function Navbar() {
             <img src={SellImage} alt="Carrito de Compras" />
           </a>
         </div>
-        <div className="shopping-cart">
+        <div onClick={()=> navigate("/cart")} className="shopping-cart">
           <img src={CartImage} alt="Carrito de Compras" />
         </div>
         <div className="profile-picture">
