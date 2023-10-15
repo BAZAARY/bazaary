@@ -16,3 +16,17 @@ export const REGISTER_USER = gql`
 		}
 	}
 `;
+
+export const LOGIN_USER = gql`
+	mutation LoginUser($input: UserInput!) {
+		loginUser(input: $input) {
+			user {
+				id_usuario
+				email
+				nombre_usuario
+			}
+			token
+			message
+		}
+	}
+`;
