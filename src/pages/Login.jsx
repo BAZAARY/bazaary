@@ -6,9 +6,12 @@ import { useNavigate } from "react-router-dom";
 // import HomeButton from "../utilities/HomeButton";
 import { GoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { useQuery } from "@apollo/client";
+import { GET_USERS } from "../connections/queries"; // Importa tus consultas
 
 const Login = () => {
 	const navigate = useNavigate(); // Hook de navegación
+	const { loading, error, data } = useQuery(GET_USERS);
 	// const [showAlert, setShowAlert] = useState(false); // Estado para mostrar/ocultar la alerta
 
 	// const [formData, setFormData] = useState({
@@ -84,6 +87,11 @@ const Login = () => {
 	// 	myresponse(); // Ejecutar la función asíncrona myresponse
 	// };
 
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error: {error.message}</p>;
+
+	console.log(data);
+
 	// Render de la pagina con sus componentes. Una imagen de fondo, un logo, y los campos necesarios para loguearse. Además del botón de submit y el botón que lleva a registro
 	return (
 		<div id="login" className="font-text">
@@ -115,6 +123,9 @@ const Login = () => {
 									// onChange={(e) => setFormData({ ...formData, contrasena: e.target.value })}
 								/>
 
+								<div className="bg-color-red">
+									<div>{data.email}</div>
+								</div>
 								<button
 									id="submit"
 									type="submit"
