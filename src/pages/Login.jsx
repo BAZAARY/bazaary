@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useQuery } from "@apollo/client";
-import { GET_USERS } from "../connections/queries"; // Importa tus consultas
+import { GET_USERS } from "../connections/queries";
 
 const Login = () => {
 	const navigate = useNavigate(); // Hook de navegación

@@ -9,11 +9,10 @@ export const GET_USERS = gql`
 	}
 `;
 
-// export const CREATE_USER = gql`
-// 	mutation createUser($name: String!) {
-// 		createUser(name: $name) {
-// 			id
-// 			name
-// 		}
-// 	}
-// `;
+export const REGISTER_USER = gql`
+	mutation RegisterUser($input: UserInput!) {
+		registerUser(input: $input) {
+			message
+		}
+	}
+`;
