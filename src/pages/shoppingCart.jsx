@@ -20,8 +20,6 @@ const ShoppingCart = () => {
                 setIsLoading(false)
             })
     }, []);
-
-    console.log(data)
     return(
         <>
         {isLoading ? (
