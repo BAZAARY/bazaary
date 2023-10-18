@@ -1,8 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './HomePage.css'
+import { getProductsIds, getNameAndPriceWithProductId, getImageForHomePageWithProductId, getAPIURL } from './connections/fastapicon';
 
 function HomePage() {
-  const items = Array.from({ length: 26 }, (_, index) => index + 1);
+  const backgroundImageURL = "https://previews.123rf.com/images/realfantasyart/realfantasyart2303/realfantasyart230301799/201791081-familia-de-robots-ecol%C3%B3gicos-en-el-suelo-concepto-de-tecnolog%C3%ADa-y-conservaci%C3%B3n-del-medio-ambiente.jpg"
+  const [itemsIds, setItemsIds] = useState([]);
+  const [names, setNames] = useState([]);
+  const [prices, setPrices] = useState([]);
+  const [imagesIds, setImagesIds] = useState([]);
+  const [numberOfItems, setNumberOfItems] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const responseItemsIds = await getProductsIds();
+        const productIds = responseItemsIds.data.map((product) => product.id);
+        setItemsIds(productIds);
+        setNumberOfItems(productIds.length);
+        const fetchNamesAndPrices = async (itemId) => {
+          const nameAndPrice = await getNameAndPriceWithProductId(itemId);
+          return nameAndPrice;
+        }
+
+        // Use Promise.all to fetch names and prices for all items
+        const nameAndPricePromises = productIds.map(fetchNamesAndPrices);
+        const nameAndPriceData = await Promise.all(nameAndPricePromises);
+
+        const namesArray = nameAndPriceData.map((item) => item.data);
+        const pricesArray = nameAndPriceData.map((item) => item.data);
+
+        setNames(namesArray.map((pos) => pos[0].name));
+        setPrices(pricesArray.map((pos) => pos[0].price));
+
+        const fetchImagesIds = async (itemId) => {
+          const imageId = await getImageForHomePageWithProductId(itemId);
+          return imageId
+        }
+
+        const imagesIdsPromises = productIds.map(fetchImagesIds);
+        const imagesIds = await Promise.all(imagesIdsPromises);
+
+        setImagesIds(imagesIds.map((pos) => pos));
+
+      } catch (err) {
+        console.log(err);
+        // Handle errors as needed
+      }
+    }
+
+    fetchData();
+  }, []);
+  console.log(itemsIds);
+  console.log(names);
+  console.log(prices);
+  console.log(imagesIds);
+  console.log(numberOfItems);
   return (
     <>
       <div className="grid-container-revelant">
@@ -39,20 +90,20 @@ function HomePage() {
         </div>
         {/* Add more grid items as needed */}
       </div>
+
       <div className="grid-container-items">
-        {items.map((item) => (
+        {Array.from({ length: numberOfItems }, (_, index) => index).map((i) => (
           <div
             onMouseOver={() => {
-              const element = document.getElementById(`grid-item-hover-${item}`)
+              const element = document.getElementById(`grid-item-hover-${itemsIds[i]}`);
               if (element) {
                 element.style.overflow = 'hidden';
                 element.style.height = '30px';
                 element.style.transition = '.5s ease';
-
               }
-            }            }
+            }}
             onMouseOut={() => {
-              const element = document.getElementById(`grid-item-hover-${item}`)
+              const element = document.getElementById(`grid-item-hover-${itemsIds[i]}`);
               if (element) {
                 element.style.overflow = 'hidden';
                 element.style.height = '0px';
@@ -60,23 +111,27 @@ function HomePage() {
               }
             }}
             className="grid-items"
-            key={item}>
-            <span>{item}</span>
-            <div className="grid-item-price">
-              COP 18.200.000
-            </div>
+            key={itemsIds[i]}
+            style={{
+              backgroundImage: `url(${getAPIURL()}/get_image/?img_id=${imagesIds[i]})`, // Set the background image
+              backgroundSize: 'cover', // or 'contain' based on your preference
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center', // Center the background image
+            }}
+          >
+            <span>{itemsIds[i]}</span>
+            <div className="grid-item-price">{prices[i]}</div>
             <div
-              style={
-                {
-                  background: '#FA6C19',
-                  gridColumn: '1 / 7',
-                  gridRow: '7',
-                  overflow: 'hidden',
-                  height: '0px',
-                }
-              }
-              id={`grid-item-hover-${item}`}>
-              Nombre Producto - {item}
+              style={{
+                background: '#FA6C19',
+                gridColumn: '1 / 7',
+                gridRow: '7',
+                overflow: 'hidden',
+                height: '0px',
+              }}
+              id={`grid-item-hover-${itemsIds[i]}`}
+            >
+              {names[i]}
             </div>
           </div>
         ))}
