@@ -57,15 +57,69 @@ function HomePage() {
   return (
     <>
       <div className="grid-container-revelant">
-        <div className="one">Relevant 1</div>
-        <div className="two">Relevant 2</div>
-        <div className="three">Relevant 3</div>
-        <div className="four">Relevant 4</div>
-        <div className="five">Relevant 5</div>
-        <div className="six">Relevant 6</div>
-        <div className="seven">Relevant 7</div>
-        <div className="eigth">Relevant 8</div>
-        <div className="nine">Relevant 9</div>
+        <div className="one"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1orh5sYorcM8a1Lf1epkSbCuOvdPjVGyO)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="two"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1M1eCagXy0p6qyhh-TEfInYvnav0OUBd3)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="three"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1VYpmu0gJSAGPBLmQWQrTrzuslmaJRGT2)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="four"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=19v0VwnjEQzKNbc-LpePET-IyRsI4UjIy)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="five"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1Juo2h6Is_jT8MIAh5aAlGAYu2taGXkQL)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="six"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1h2-xe9oooNFjGuofutJBNL8umBs2iR_1)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="seven"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=151o9qfDaDZN33uvpmEuOeRFdbB6SVEqy)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="eigth"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1puoU5cW7KMKgfuVvB_fscaUyfnq_vdU3)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="nine"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1GU0pZ1el8t4r43G4Bf56ggFG5WNr7YUK)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
         {/* Add more grid items as needed */}
       </div>
 
@@ -98,7 +152,7 @@ function HomePage() {
               const element = document.getElementById(`grid-item-hover-${itemsIds[i]}`);
               if (element) {
                 element.style.overflow = 'hidden';
-                element.style.height = '30px';
+                element.style.height = '26px';
                 element.style.transition = '.5s ease';
               }
             }}
@@ -114,13 +168,13 @@ function HomePage() {
             key={itemsIds[i]}
             style={{
               backgroundImage: `url(${getAPIURL()}/get_image/?img_id=${imagesIds[i]})`, // Set the background image
-              backgroundSize: 'cover', // or 'contain' based on your preference
+              backgroundSize: '65%', // or 'contain' based on your preference
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center', // Center the background image
             }}
           >
-            <span>{itemsIds[i]}</span>
-            <div className="grid-item-price">{prices[i]}</div>
+            {/* <span>{itemsIds[i]}</span> */}
+            <div className="grid-item-price">COP {prices[i]}</div>
             <div
               style={{
                 background: '#FA6C19',
@@ -128,10 +182,12 @@ function HomePage() {
                 gridRow: '7',
                 overflow: 'hidden',
                 height: '0px',
+                paddingLeft: '12px',
+                paddingUp: '19px',
               }}
               id={`grid-item-hover-${itemsIds[i]}`}
             >
-              {names[i]}
+              {"    "} {names[i]}
             </div>
           </div>
         ))}
