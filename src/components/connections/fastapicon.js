@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000'
+const API_URL = 'https://catalogmicroservicedocker.onrender.com'
 
 export const getProductsIds = async () => {
     try {

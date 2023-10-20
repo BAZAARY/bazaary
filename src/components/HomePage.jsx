@@ -3,7 +3,6 @@ import './HomePage.css'
 import { getProductsIds, getNameAndPriceWithProductId, getImageForHomePageWithProductId, getAPIURL } from './connections/fastapicon';
 
 function HomePage() {
-  const backgroundImageURL = "https://previews.123rf.com/images/realfantasyart/realfantasyart2303/realfantasyart230301799/201791081-familia-de-robots-ecol%C3%B3gicos-en-el-suelo-concepto-de-tecnolog%C3%ADa-y-conservaci%C3%B3n-del-medio-ambiente.jpg"
   const [itemsIds, setItemsIds] = useState([]);
   const [names, setNames] = useState([]);
   const [prices, setPrices] = useState([]);
