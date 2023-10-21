@@ -30,3 +30,17 @@ export const LOGIN_USER = gql`
 		}
 	}
 `;
+
+export const LOGIN_GOOGLE_USER = gql`
+	mutation LoginGoogleUser($input: CredentialLoginGoogle!) {
+		loginGoogleUser(input: $input) {
+			user {
+				id_usuario
+				email
+				nombre_usuario
+			}
+			token
+			message
+		}
+	}
+`;
