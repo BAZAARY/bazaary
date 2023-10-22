@@ -125,7 +125,7 @@ const Register = () => {
 			<div className="md:flex md:flex-row w-full ">
 				{/* PARTE DERECHA */}
 				<form onSubmit={handleSubmit} className="flex w-full justify-center items-center">
-					<div className="flex p-4 flex flex-col justify-center h-full w-full md:bg-[#ffdcb7] max-w-md border-2 border-gray-100 rounded-3xl mt-8 md:mt-16">
+					<div className="flex p-4 flex flex-col justify-center h-full w-full md:bg-[#ffdcb7] max-w-md md:border-2 md:border-gray-100 rounded-3xl mt-8 md:mt-16">
 						{/* CAMPO DE EMAIL, PASSWORD, BOTON DE REGISTER */}
 						<div className="flex flex-col items-center justify-center">
 							<p className="font-bold text-3xl py-6">Registrarse</p>

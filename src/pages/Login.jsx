@@ -6,12 +6,12 @@ import Swal from "sweetalert2";
 import { GoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_USERS, LOGIN_USER } from "../connections/queries";
+import { GET_USERS, LOGIN_USER, LOGIN_GOOGLE_USER } from "../connections/queries";
 
 const Login = () => {
 	const [loginUser] = useMutation(LOGIN_USER);
+	const [loginGoogleUser] = useMutation(LOGIN_GOOGLE_USER);
 	const navigate = useNavigate(); // Hook de navegación
-	const { loading, error, data } = useQuery(GET_USERS);
 	// const [showAlert, setShowAlert] = useState(false); // Estado para mostrar/ocultar la alerta
 
 	const [formData, setFormData] = useState({
@@ -70,36 +70,36 @@ const Login = () => {
 	};
 
 	//MANEJAR EL LOGIN CON GOOGLE
-	// const handleGoogleLogin = (credentialResponse) => {
-	// 	console.log(credentialResponse); // Imprimir los datos del formulario en la consola
-	// 	const myresponse = async () => {
-	// 		// Realizar solicitud de inicio de sesión utilizando los datos del formulario
-	// 		const req_succesful = await postLoginGoogle({
-	// 			credentialResponse,
-	// 		});
+	const handleGoogleLogin = (credentialResponse) => {
+		console.log(credentialResponse); // Imprimir los datos del formulario en la consola
+		const myresponse = async () => {
+			// Realizar solicitud de inicio de sesión utilizando los datos del formulario
+			const req_succesful = await loginGoogleUser({
+				variables: {
+					input: {
+						clientId: credentialResponse.clientId,
+						credential: credentialResponse.credential,
+					},
+				},
+			});
 
-	// 		console.log(req_succesful);
-	// 		if (req_succesful === "Inicio de sesión exitoso") {
-	// 			// Si las credenciales son correctas, mostrar una alerta de éxito y navegar a la página de inicio ("/home")
-	// 			Swal.fire({
-	// 				title: "Welcome!",
-	// 				text: "You have succesfully been logged!",
-	// 				icon: "success",
-	// 				customClass: {
-	// 					container: "font-text",
-	// 				},
-	// 			});
+			console.log(req_succesful);
+			if (req_succesful.data.loginGoogleUser.message === "Inicio de sesión (Google) exitoso") {
+				// Si las credenciales son correctas, mostrar una alerta de éxito y navegar a la página de inicio ("/home")
+				Swal.fire({
+					title: "Welcome!",
+					text: "You have succesfully been logged!",
+					icon: "success",
+					customClass: {
+						container: "font-text",
+					},
+				});
 
-	// 			navigate("/home");
-	// 		}
-	// 	};
-	// 	myresponse(); // Ejecutar la función asíncrona myresponse
-	// };
-
-	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Error: {error.message}</p>;
-
-	console.log(data);
+				navigate("/home");
+			}
+		};
+		myresponse(); // Ejecutar la función asíncrona myresponse
+	};
 
 	// Render de la pagina con sus componentes. Una imagen de fondo, un logo, y los campos necesarios para loguearse. Además del botón de submit y el botón que lleva a registro
 	return (
@@ -109,7 +109,7 @@ const Login = () => {
 			<div className="md:flex md:flex-row w-full">
 				{/* PARTE DERECHA */}
 				<form onSubmit={handleSubmit} className="flex w-full justify-center items-center">
-					<div className="flex p-4 flex flex-col justify-center h-full w-full md:bg-[#ffdcb7] max-w-md border-2 border-gray-100 rounded-3xl mt-8 md:mt-16">
+					<div className="flex p-4 flex flex-col justify-center h-full w-full md:bg-[#ffdcb7] max-w-md md:border-2 md:border-gray-100 rounded-3xl mt-8 md:mt-16">
 						{/* CAMPO DE EMAIL, PASSWORD, BOTON DE LOGIN */}
 						<div className="flex flex-col items-center justify-center">
 							<p className="font-bold text-3xl py-8">Iniciar sesión</p>
@@ -148,10 +148,10 @@ const Login = () => {
 
 								{/* LOGIN CON GOOGLE */}
 								<div className="mb-8">
-									<GoogleOAuthProvider clientId="880689041530-1g2pd7csm5mbrrqaha8rh60s6bvntlsv.apps.googleusercontent.com">
+									<GoogleOAuthProvider clientId="176512858558-8jjm4bclhonv3vbi2dlg22djslfm7iti.apps.googleusercontent.com">
 										<GoogleLogin
 											onSuccess={(credentialResponse) => {
-												// handleGoogleLogin(credentialResponse); // Pasar credentialResponse como argumento
+												handleGoogleLogin(credentialResponse); // Pasar credentialResponse como argumento
 											}}
 											onError={() => {
 												console.log("Login Failed");
