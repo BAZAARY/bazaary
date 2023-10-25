@@ -1,20 +1,124 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './HomePage.css'
+import { getProductsIds, getNameAndPriceWithProductId, getImageForHomePageWithProductId, getAPIURL } from './connections/fastapicon';
 
 function HomePage() {
-  const items = Array.from({ length: 26 }, (_, index) => index + 1);
+  const [itemsIds, setItemsIds] = useState([]);
+  const [names, setNames] = useState([]);
+  const [prices, setPrices] = useState([]);
+  const [imagesIds, setImagesIds] = useState([]);
+  const [numberOfItems, setNumberOfItems] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const responseItemsIds = await getProductsIds();
+        const productIds = responseItemsIds.data.map((product) => product.id);
+        setItemsIds(productIds);
+        setNumberOfItems(productIds.length);
+        const fetchNamesAndPrices = async (itemId) => {
+          const nameAndPrice = await getNameAndPriceWithProductId(itemId);
+          return nameAndPrice;
+        }
+
+        // Use Promise.all to fetch names and prices for all items
+        const nameAndPricePromises = productIds.map(fetchNamesAndPrices);
+        const nameAndPriceData = await Promise.all(nameAndPricePromises);
+
+        const namesArray = nameAndPriceData.map((item) => item.data);
+        const pricesArray = nameAndPriceData.map((item) => item.data);
+
+        setNames(namesArray.map((pos) => pos[0].name));
+        setPrices(pricesArray.map((pos) => pos[0].price));
+
+        const fetchImagesIds = async (itemId) => {
+          const imageId = await getImageForHomePageWithProductId(itemId);
+          return imageId
+        }
+
+        const imagesIdsPromises = productIds.map(fetchImagesIds);
+        const imagesIds = await Promise.all(imagesIdsPromises);
+
+        setImagesIds(imagesIds.map((pos) => pos));
+
+      } catch (err) {
+        console.log(err);
+        // Handle errors as needed
+      }
+    }
+
+    fetchData();
+  }, []);
+  console.log(itemsIds);
+  console.log(names);
+  console.log(prices);
+  console.log(imagesIds);
+  console.log(numberOfItems);
   return (
     <>
       <div className="grid-container-revelant">
-        <div className="one">Relevant 1</div>
-        <div className="two">Relevant 2</div>
-        <div className="three">Relevant 3</div>
-        <div className="four">Relevant 4</div>
-        <div className="five">Relevant 5</div>
-        <div className="six">Relevant 6</div>
-        <div className="seven">Relevant 7</div>
-        <div className="eigth">Relevant 8</div>
-        <div className="nine">Relevant 9</div>
+        <div className="one"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1orh5sYorcM8a1Lf1epkSbCuOvdPjVGyO)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="two"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1M1eCagXy0p6qyhh-TEfInYvnav0OUBd3)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="three"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1VYpmu0gJSAGPBLmQWQrTrzuslmaJRGT2)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="four"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=19v0VwnjEQzKNbc-LpePET-IyRsI4UjIy)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="five"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1Juo2h6Is_jT8MIAh5aAlGAYu2taGXkQL)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="six"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1h2-xe9oooNFjGuofutJBNL8umBs2iR_1)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="seven"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=151o9qfDaDZN33uvpmEuOeRFdbB6SVEqy)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="eigth"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1puoU5cW7KMKgfuVvB_fscaUyfnq_vdU3)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
+        <div className="nine"
+          style={{
+            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1GU0pZ1el8t4r43G4Bf56ggFG5WNr7YUK)`, // Set the background image
+            backgroundSize: 'cover', // or 'contain' based on your preference
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center', // Center the background image
+          }}></div>
         {/* Add more grid items as needed */}
       </div>
 
@@ -39,20 +143,20 @@ function HomePage() {
         </div>
         {/* Add more grid items as needed */}
       </div>
+
       <div className="grid-container-items">
-        {items.map((item) => (
+        {Array.from({ length: numberOfItems }, (_, index) => index).map((i) => (
           <div
             onMouseOver={() => {
-              const element = document.getElementById(`grid-item-hover-${item}`)
+              const element = document.getElementById(`grid-item-hover-${itemsIds[i]}`);
               if (element) {
                 element.style.overflow = 'hidden';
-                element.style.height = '30px';
+                element.style.height = '26px';
                 element.style.transition = '.5s ease';
-
               }
-            }            }
+            }}
             onMouseOut={() => {
-              const element = document.getElementById(`grid-item-hover-${item}`)
+              const element = document.getElementById(`grid-item-hover-${itemsIds[i]}`);
               if (element) {
                 element.style.overflow = 'hidden';
                 element.style.height = '0px';
@@ -60,23 +164,29 @@ function HomePage() {
               }
             }}
             className="grid-items"
-            key={item}>
-            <span>{item}</span>
-            <div className="grid-item-price">
-              COP 18.200.000
-            </div>
+            key={itemsIds[i]}
+            style={{
+              backgroundImage: `url(${getAPIURL()}/get_image/?img_id=${imagesIds[i]})`, // Set the background image
+              backgroundSize: '65%', // or 'contain' based on your preference
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center', // Center the background image
+            }}
+          >
+            {/* <span>{itemsIds[i]}</span> */}
+            <div className="grid-item-price">COP {prices[i]}</div>
             <div
-              style={
-                {
-                  background: '#FA6C19',
-                  gridColumn: '1 / 7',
-                  gridRow: '7',
-                  overflow: 'hidden',
-                  height: '0px',
-                }
-              }
-              id={`grid-item-hover-${item}`}>
-              Nombre Producto - {item}
+              style={{
+                background: '#FA6C19',
+                gridColumn: '1 / 7',
+                gridRow: '7',
+                overflow: 'hidden',
+                height: '0px',
+                paddingLeft: '12px',
+                paddingUp: '19px',
+              }}
+              id={`grid-item-hover-${itemsIds[i]}`}
+            >
+              {"    "} {names[i]}
             </div>
           </div>
         ))}

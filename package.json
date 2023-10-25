@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.8.5",
     "@react-oauth/google": "^0.11.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -11,10 +12,12 @@
     "dompurify": "^3.0.6",
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.6.3",
+    "graphql": "^16.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
+    "sweetalert2": "^11.7.32",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
