@@ -9,7 +9,10 @@ const Profile = () => {
 		<div className="flex flex-col justify-items-center items-center ">
 			<div className="w-[45rem] h-24 bg-slate-300 rounded-lg mt-12 mb-8 flex items-center">
 				<ProfilePictureUploader />
-				<h1>jeje</h1>
+				<div className="flex flex-col gap-2">
+					<h1 className="text-2xl text-black font-bold decoration-black">Username</h1>
+					<h2 className="font-bold text-xl text-[#5294E2]">Nivel 2</h2>
+				</div>
 			</div>
 			<SectionProfile text="Información personal" onClick={() => console.log("jeje")} />
 
