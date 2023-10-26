@@ -12,6 +12,7 @@ import ShoppingCart from "./pages/shoppingCart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import PersonalInformation from "./pages/PersonalInformation";
 
 const App = () => {
 	return (
@@ -32,6 +33,7 @@ const App = () => {
 				<Route path="/register" element={<Register />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/profile" element={<Profile />} />
+				<Route path="/profile/personalinformation" element={<PersonalInformation/>}/>
 			</Route>
 		</Routes>
 	);
