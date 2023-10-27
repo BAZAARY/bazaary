@@ -174,19 +174,23 @@ function HomePage() {
           >
             {/* <span>{itemsIds[i]}</span> */}
             <div className="grid-item-price">COP {prices[i]}</div>
-            <div
-              style={{
-                background: '#FA6C19',
-                gridColumn: '1 / 7',
-                gridRow: '7',
-                overflow: 'hidden',
-                height: '0px',
-                paddingLeft: '12px',
-                paddingUp: '19px',
-              }}
-              id={`grid-item-hover-${itemsIds[i]}`}
-            >
+              <div
+                style={{
+                  background: '#FA6C19',
+                  gridColumn: '1 / 7',
+                  gridRow: '7',
+                  overflow: 'hidden',
+                  height: '0px',
+                  paddingLeft: '12px',
+                  paddingUp: '19px',
+                }}
+                id={`grid-item-hover-${itemsIds[i]}`}
+              >
               {"    "} {names[i]}
+            </div>
+            <div className=''>
+            
+            
             </div>
           </div>
         ))}
