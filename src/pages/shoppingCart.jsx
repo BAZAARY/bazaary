@@ -6,7 +6,6 @@ import { get_products } from "../connections/cartqueries";
 import { useQuery, useMutation } from "@apollo/client";
 
 const ShoppingCart = () => {
-    // const [isLoading, setIsLoading] = useState(true);
     const {loading, error, data} = useQuery(get_products);
 
     if (loading) {
