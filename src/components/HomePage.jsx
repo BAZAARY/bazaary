@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './HomePage.css'
-import { getProductsIds, getNameAndPriceWithProductId, getImageForHomePageWithProductId, getAPIURL } from './connections/fastapicon';
-import { GET_IMAGE_ID, GET_PRODUCTS_IS, GET_PRODUCT_NAME_AND_PRICE } from '../connections/queriesCatalogo';
+import { getAPIFastAPIURL } from './FastAPIURL/fastapicon';
+import { GET_IMAGE_ID, GET_PRODUCTS_IDS, GET_PRODUCT_NAME_AND_PRICE } from '../connections/queriesCatalogo';
 import client from '../connections/apollo';
 
 function HomePage() {
@@ -13,39 +13,39 @@ function HomePage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const responseItemsIds = await getProductsIds();
-        const productIds = responseItemsIds.data.map((product) => product.id);
+        const responseItemsIds = await client.query({
+          query: GET_PRODUCTS_IDS,
+        });
+        const productIds = responseItemsIds.data.getProducsIds.map((product) => product.id);
         setItemsIds(productIds);
         setNumberOfItems(productIds.length);
         const fetchNamesAndPrices = async (itemId) => {
-          const nameAndPrice = await getNameAndPriceWithProductId(itemId);
+          const nameAndPrice = await client.query({
+            query: GET_PRODUCT_NAME_AND_PRICE,
+            variables: { productId: itemId.toString() }, // Pasar el ID como variable
+          });
           return nameAndPrice;
         }
-
+        
         // Use Promise.all to fetch names and prices for all items
         const nameAndPricePromises = productIds.map(fetchNamesAndPrices);
         const nameAndPriceData = await Promise.all(nameAndPricePromises);
 
-        const namesArray = nameAndPriceData.map((item) => item.data);
-        const pricesArray = nameAndPriceData.map((item) => item.data);
+        const namesArray = nameAndPriceData.map((item) => item.data.getProductNameAndPriceWithId);
+        const pricesArray = nameAndPriceData.map((item) => item.data.getProductNameAndPriceWithId);
 
         setNames(namesArray.map((pos) => pos[0].name));
         setPrices(pricesArray.map((pos) => pos[0].price));
 
-        const fetchImagesIds = async (itemId) => {
-          const imageId = await getImageForHomePageWithProductId(itemId);
-          return imageId
-        }
-
-  const imagesIdsPromises = productIds.map((productId) =>
-    client.query({
-      query: GET_IMAGE_ID,
-      variables: { productId: productId.toString() }, // Pasar el ID como variable
-    })
-  );
+        const imagesIdsPromises = productIds.map((productId) =>
+          client.query({
+            query: GET_IMAGE_ID,
+            variables: { productId: productId.toString() }, // Pasar el ID como variable
+          })
+        );
         const imagesIds = await Promise.all(imagesIdsPromises);
 
-        setImagesIds(imagesIds.map((pos) => pos));
+        setImagesIds(imagesIds.map((pos) => pos.data.getImageAIdWithProductId));
 
       } catch (err) {
         console.log(err);
@@ -55,73 +55,73 @@ function HomePage() {
 
     fetchData();
   }, []);
-  console.log(itemsIds);
-  console.log(names);
-  console.log(prices);
-  console.log(imagesIds);
-  console.log(numberOfItems);
+  // console.log(itemsIds);
+  // console.log(names);
+  // console.log(prices);
+  // console.log(imagesIds);
+  // console.log(numberOfItems);
   return (
     <>
       <div className="grid-container-revelant">
         <div className="one"
           style={{
-            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1orh5sYorcM8a1Lf1epkSbCuOvdPjVGyO)`, // Set the background image
+            backgroundImage: `url(${getAPIFastAPIURL()}/get_image/?img_id=1orh5sYorcM8a1Lf1epkSbCuOvdPjVGyO)`, // Set the background image
             backgroundSize: 'cover', // or 'contain' based on your preference
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center', // Center the background image
           }}></div>
         <div className="two"
           style={{
-            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1M1eCagXy0p6qyhh-TEfInYvnav0OUBd3)`, // Set the background image
+            backgroundImage: `url(${getAPIFastAPIURL()}/get_image/?img_id=1M1eCagXy0p6qyhh-TEfInYvnav0OUBd3)`, // Set the background image
             backgroundSize: 'cover', // or 'contain' based on your preference
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center', // Center the background image
           }}></div>
         <div className="three"
           style={{
-            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1VYpmu0gJSAGPBLmQWQrTrzuslmaJRGT2)`, // Set the background image
+            backgroundImage: `url(${getAPIFastAPIURL()}/get_image/?img_id=1VYpmu0gJSAGPBLmQWQrTrzuslmaJRGT2)`, // Set the background image
             backgroundSize: 'cover', // or 'contain' based on your preference
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center', // Center the background image
           }}></div>
         <div className="four"
           style={{
-            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=19v0VwnjEQzKNbc-LpePET-IyRsI4UjIy)`, // Set the background image
+            backgroundImage: `url(${getAPIFastAPIURL()}/get_image/?img_id=19v0VwnjEQzKNbc-LpePET-IyRsI4UjIy)`, // Set the background image
             backgroundSize: 'cover', // or 'contain' based on your preference
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center', // Center the background image
           }}></div>
         <div className="five"
           style={{
-            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1Juo2h6Is_jT8MIAh5aAlGAYu2taGXkQL)`, // Set the background image
+            backgroundImage: `url(${getAPIFastAPIURL()}/get_image/?img_id=1Juo2h6Is_jT8MIAh5aAlGAYu2taGXkQL)`, // Set the background image
             backgroundSize: 'cover', // or 'contain' based on your preference
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center', // Center the background image
           }}></div>
         <div className="six"
           style={{
-            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1h2-xe9oooNFjGuofutJBNL8umBs2iR_1)`, // Set the background image
+            backgroundImage: `url(${getAPIFastAPIURL()}/get_image/?img_id=1h2-xe9oooNFjGuofutJBNL8umBs2iR_1)`, // Set the background image
             backgroundSize: 'cover', // or 'contain' based on your preference
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center', // Center the background image
           }}></div>
         <div className="seven"
           style={{
-            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=151o9qfDaDZN33uvpmEuOeRFdbB6SVEqy)`, // Set the background image
+            backgroundImage: `url(${getAPIFastAPIURL()}/get_image/?img_id=151o9qfDaDZN33uvpmEuOeRFdbB6SVEqy)`, // Set the background image
             backgroundSize: 'cover', // or 'contain' based on your preference
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center', // Center the background image
           }}></div>
         <div className="eigth"
           style={{
-            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1puoU5cW7KMKgfuVvB_fscaUyfnq_vdU3)`, // Set the background image
+            backgroundImage: `url(${getAPIFastAPIURL()}/get_image/?img_id=1puoU5cW7KMKgfuVvB_fscaUyfnq_vdU3)`, // Set the background image
             backgroundSize: 'cover', // or 'contain' based on your preference
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center', // Center the background image
           }}></div>
         <div className="nine"
           style={{
-            backgroundImage: `url(${getAPIURL()}/get_image/?img_id=1GU0pZ1el8t4r43G4Bf56ggFG5WNr7YUK)`, // Set the background image
+            backgroundImage: `url(${getAPIFastAPIURL()}/get_image/?img_id=1GU0pZ1el8t4r43G4Bf56ggFG5WNr7YUK)`, // Set the background image
             backgroundSize: 'cover', // or 'contain' based on your preference
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center', // Center the background image
@@ -173,7 +173,7 @@ function HomePage() {
             className="grid-items"
             key={itemsIds[i]}
             style={{
-              backgroundImage: `url(${getAPIURL()}/get_image/?img_id=${imagesIds[i]})`, // Set the background image
+              backgroundImage: `url(${getAPIFastAPIURL()}/get_image/?img_id=${imagesIds[i]})`, // Set the background image
               backgroundSize: '65%', // or 'contain' based on your preference
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center', // Center the background image

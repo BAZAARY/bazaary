@@ -7,7 +7,7 @@ export const GET_IMAGE_ID = gql`
 `;
 
 
-export const GET_PRODUCTS_IS = gql`
+export const GET_PRODUCTS_IDS = gql`
     query GetProducsIds {
         getProducsIds {
             id
