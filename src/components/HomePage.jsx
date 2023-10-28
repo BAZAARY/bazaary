@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './HomePage.css'
 import { getProductsIds, getNameAndPriceWithProductId, getImageForHomePageWithProductId, getAPIURL } from './connections/fastapicon';
+import { GET_IMAGE_ID, GET_PRODUCTS_IS, GET_PRODUCT_NAME_AND_PRICE } from '../connections/queriesCatalogo';
+import client from '../connections/apollo';
 
 function HomePage() {
   const [itemsIds, setItemsIds] = useState([]);
@@ -35,7 +37,12 @@ function HomePage() {
           return imageId
         }
 
-        const imagesIdsPromises = productIds.map(fetchImagesIds);
+  const imagesIdsPromises = productIds.map((productId) =>
+    client.query({
+      query: GET_IMAGE_ID,
+      variables: { productId: productId.toString() }, // Pasar el ID como variable
+    })
+  );
         const imagesIds = await Promise.all(imagesIdsPromises);
 
         setImagesIds(imagesIds.map((pos) => pos));
