@@ -8,6 +8,7 @@ import Descripcion from "./components/AddingItemsComponents/Description";
 import Media from "./components/AddingItemsComponents/Media";
 import Specs from "./components/AddingItemsComponents/Specs";
 import Preview from "./components/AddingItemsComponents/Preview";
+import SearchBar from "./pages/searchBar"
 import ShoppingCart from "./pages/shoppingCart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -32,6 +33,7 @@ const App = () => {
 					<Route path="/cart" element={<ShoppingCart />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
+					<Route path="/search" element={<SearchBar />} />
 				</Route>
 			</Routes>
 		</ApolloProvider>
