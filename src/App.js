@@ -11,6 +11,7 @@ import Preview from "./components/AddingItemsComponents/Preview";
 import ShoppingCart from "./pages/shoppingCart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Invoice from "./pages/Invoice";
 import { ApolloProvider } from "@apollo/client";
 import client from "./connections/apollo";
 
@@ -30,6 +31,7 @@ const App = () => {
 					</Route>
 					/
 					<Route path="/cart" element={<ShoppingCart />} />
+					<Route path="/invoice/:id" element={<Invoice />} /> {/* Nueva ruta para la factura */}
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 				</Route>
