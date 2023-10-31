@@ -1,41 +1,113 @@
 import React from "react";
+import sellImage from "../components/img/sell.png"; // Ajusta la ruta de la imagen
+import sellImage1 from "../components/img/mg.avif"; // Ajusta la ruta de la imagen
 
 const SearchBar = () => {
     const products = [
-        { id: 1, name: "Producto 1", image: "url_de_la_imagen_1" },
-        { id: 2, name: "Producto 2", image: "url_de_la_imagen_2" },
-        { id: 3, name: "Producto 3", image: "url_de_la_imagen_3" },
-        { id: 4, name: "Producto 4", image: "url_de_la_imagen_4" },
-        { id: 5, name: "Producto 5", image: "url_de_la_imagen_5" },
-        { id: 6, name: "Producto 6", image: "url_de_la_imagen_6" },
+        { 
+            id: 1, 
+            name: "Producto 1", 
+            image: sellImage1,
+            description: "Descripción del Producto 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            price: 25.99,
+            // Agrega más propiedades o información aquí si es necesario para cada producto
+        },
+        // ... (resto de tus productos con información adicional)
+        { 
+            id: 1, 
+            name: "Producto 1", 
+            image: sellImage1,
+            description: "Descripción del Producto 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            price: 25.99,
+            // Agrega más propiedades o información aquí si es necesario para cada producto
+        },
+        // ... (resto de tus productos con información adicional)
+        { 
+            id: 1, 
+            name: "Producto 1", 
+            image: sellImage1,
+            description: "Descripción del Producto 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            price: 25.99,
+            // Agrega más propiedades o información aquí si es necesario para cada producto
+        },
+        // ... (resto de tus productos con información adicional)
+        { 
+            id: 1, 
+            name: "Producto 1", 
+            image: sellImage1,
+            description: "Descripción del Producto 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            price: 25.99,
+            // Agrega más propiedades o información aquí si es necesario para cada producto
+        },
+        // ... (resto de tus productos con información adicional)
+        { 
+            id: 1, 
+            name: "Producto 1", 
+            image: sellImage1,
+            description: "Descripción del Producto 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            price: 25.99,
+            // Agrega más propiedades o información aquí si es necesario para cada producto
+        },
+        // ... (resto de tus productos con información adicional)
+        { 
+            id: 1, 
+            name: "Producto 1", 
+            image: sellImage1,
+            description: "Descripción del Producto 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            price: 25.99,
+            // Agrega más propiedades o información aquí si es necesario para cada producto
+        },
+        // ... (resto de tus productos con información adicional)
+        { 
+            id: 1, 
+            name: "Producto 1", 
+            image: sellImage1,
+            description: "Descripción del Producto 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            price: 25.99,
+            // Agrega más propiedades o información aquí si es necesario para cada producto
+        },
+        // ... (resto de tus productos con información adicional)
     ];
 
-    const numColumns = products.length > 3 ? "w-1/4" : `w-${4 / products.length}/4`;
+    
+   
+    let columnClass = "w-full"; // Por defecto, una columna
+
+    if (products.length >= 3) {
+        columnClass = "w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/4 xl:w-1/5"; // Se ajusta el número de columnas para diferentes tamaños de pantalla
+    }
 
     return (
-        <div className="flex-row md:flex">
-            {/* Contenedor del lado izquierdo con margen a la izquierda */}
-            <div className="w-1/6 bg-gray-200 h-screen mt-4 ml-4">
-                {/* Contenido del lado izquierdo */}
-                {/* Puedes colocar aquí cualquier contenido que desees */}
-                <p>Contenido Izquierdo</p>
+        <div className="flex flex-col md:flex-row">
+            {/* Contenedor vertical delgado en el lado izquierdo */}
+            <div className="md:w-1/6 bg-white p-4 mt-4 flex justify-center flex-col"> {/* Ajuste de ancho y padding, contenido centrado */}
+                {/* Contenido del contenedor vertical */}
+                <h2 className="text-center">Sidebar</h2>
+                <p className="text-center">Extra information</p>
             </div>
-
-            <div className="flex ml-4 mt-4 w-5/6 overflow-hidden">
-                <div className="w-full bg-[#ffdcb7] mt-4">
-                    <div className="flex flex-wrap justify-start p-2" style={{ display: "flex", flexWrap: "wrap" }}>
+            {/* Contenedor de productos */}
+            <div className="md:w-5/6 overflow-hidden">
+                <div className="bg-white mt-4">
+                    <div className="flex flex-wrap p-2" style={{ display: "flex", flexWrap: "wrap" }}>
                         {products.map(product => (
-                            <div key={product.id} className={numColumns + " p-2"}>
-                                <div className="bg-white p-4 border rounded-md h-full">
-                                    <img src={product.image} alt={product.name} className="w-full h-40 object-cover rounded-md mb-2" />
+                            <div key={product.id} className={columnClass + " p-2"}>
+                                <div className="bg-white p-4 border rounded-md">
+                                    <img
+                                        src={product.image}
+                                        alt={product.name}
+                                        className="w-full h-40 object-contain rounded-md mb-2"
+                                    />
                                     <p className="text-center font-semibold">{product.name}</p>
+                                    <p className="text-center text-gray-600">${product.price}</p>
+                                    <p className="text-sm">{product.description}</p>
+                                    {/* Más elementos HTML para mostrar información adicional */}
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
-            {/* ... (resto del código, como en la estructura original) */}
+            {/* ... (resto del código) */}
         </div>
     );
 };
