@@ -66,6 +66,46 @@ const SearchBar = () => {
             price: 25.99,
             // Agrega más propiedades o información aquí si es necesario para cada producto
         },
+        { 
+            id: 1, 
+            name: "Producto 1", 
+            image: sellImage1,
+            description: "Descripción del Producto 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            price: 25.99,
+            // Agrega más propiedades o información aquí si es necesario para cada producto
+        },
+        { 
+            id: 1, 
+            name: "Producto 1", 
+            image: sellImage1,
+            description: "Descripción del Producto 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            price: 25.99,
+            // Agrega más propiedades o información aquí si es necesario para cada producto
+        },
+        { 
+            id: 1, 
+            name: "Producto 1", 
+            image: sellImage1,
+            description: "Descripción del Producto 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            price: 25.99,
+            // Agrega más propiedades o información aquí si es necesario para cada producto
+        },
+        { 
+            id: 1, 
+            name: "Producto 1", 
+            image: sellImage1,
+            description: "Descripción del Producto 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            price: 25.99,
+            // Agrega más propiedades o información aquí si es necesario para cada producto
+        },
+        { 
+            id: 1, 
+            name: "Producto 1", 
+            image: sellImage1,
+            description: "Descripción del Producto 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            price: 25.99,
+            // Agrega más propiedades o información aquí si es necesario para cada producto
+        },
         // ... (resto de tus productos con información adicional)
     ];
 
@@ -79,11 +119,39 @@ const SearchBar = () => {
 
     return (
         <div className="flex flex-col md:flex-row">
-            {/* Contenedor vertical delgado en el lado izquierdo */}
-            <div className="md:w-1/6 bg-white p-4 mt-4 flex justify-center flex-col"> {/* Ajuste de ancho y padding, contenido centrado */}
-                {/* Contenido del contenedor vertical */}
-                <h2 className="text-center">Sidebar</h2>
-                <p className="text-center">Extra information</p>
+            {/* Contenedor de filtros en el lado izquierdo */}
+            <div className="md:w-1/6 bg-white p-4 mt-4 flex flex-col items-center">
+                {/* Contenido del contenedor de filtros */}
+                <h2 className="text-center">Filtros de Búsqueda</h2>
+                <div className="my-4">
+                    <h3>Categorías</h3>
+                    <ul className="flex flex-col items-start">
+                        <li className="my-2">
+                            <input type="checkbox" id="ropa" name="ropa" value="ropa" />
+                            <label htmlFor="ropa">Ropa</label>
+                        </li>
+                        <li className="my-2">
+                            <input type="checkbox" id="tecnologia" name="tecnologia" value="tecnologia" />
+                            <label htmlFor="tecnologia">Tecnología</label>
+                        </li>
+                        {/* Agregar más opciones de categorías */}
+                    </ul>
+                </div>
+                <div className="my-4">
+                    <h3>Rango de precios</h3>
+                    <input type="range" min="0" max="100" />
+                    {/* Otros tipos de filtros, como rangos de precios, podrían agregarse aquí */}
+                </div>
+                <div className="my-4">
+                    <h3>Calificación</h3>
+                    <select>
+                        <option value="5">5 Estrellas</option>
+                        <option value="4">4 Estrellas</option>
+                        <option value="3">3 Estrellas</option>
+                        <option value="2">2 Estrellas</option>
+                        <option value="1">1 Estrella</option>
+                    </select>
+                </div>
             </div>
             {/* Contenedor de productos */}
             <div className="md:w-5/6 overflow-hidden">
@@ -107,9 +175,13 @@ const SearchBar = () => {
                     </div>
                 </div>
             </div>
-            {/* ... (resto del código) */}
         </div>
     );
 };
 
 export default SearchBar;
+
+
+
+
+
