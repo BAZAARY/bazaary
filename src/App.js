@@ -14,6 +14,8 @@ import Register from "./pages/Register";
 import Invoice from "./pages/Invoice";
 import { ApolloProvider } from "@apollo/client";
 import client from "./connections/apollo";
+import Profile from "./pages/Profile";
+import PersonalInformation from "./pages/PersonalInformation";
 
 const App = () => {
 	return (
@@ -35,8 +37,20 @@ const App = () => {
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 				</Route>
+<<<<<<< HEAD
+				/
+				<Route path="/cart" element={<ShoppingCart />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
+				<Route path="/register" element={<Register />} />
+				<Route path="/profile" element={<Profile />} />
+				<Route path="/profile/personalinformation" element={<PersonalInformation/>}/>
+			</Route>
+		</Routes>
+=======
 			</Routes>
 		</ApolloProvider>
+>>>>>>> 4ea313456b8bf05ebaf5144d553dc807b13ea39e
 	);
 };
 
