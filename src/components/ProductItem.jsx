@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { deleteProduct } from "../connections/cartqueries";
-import { getAPIFastAPIURL } from "./FastAPIURL/fastapicon";
 import useImageUrl from "./helpers/useImageUrl";
+import useNameandPrice from "./helpers/useNameandPrice";
 import { toast } from "react-toastify";
 
-const ProductItem = ({item, index, imageExample, id, setProducts}) => {
+const ProductItem = ({item, index, id, setProducts}) => {
     const userId= id
     const [deleteItem] = useMutation(deleteProduct)
     const [quantity, setQuantity] = useState(1);
-
+    const producto = useNameandPrice(String(4))
+    console.log("hola", producto.nombre)
     // Eliminar producto
     const handledeleteProduct = (e, producto) => {
         e.preventDefault();
@@ -50,9 +51,9 @@ const ProductItem = ({item, index, imageExample, id, setProducts}) => {
                         </div>
                         <span className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50" onClick={increment}> + </span>
                     </div>                                    
-                    <h2 className=" overflow-hidden whitespace-nowrap text-ellipsis row-start-1 col-span-2 text-xl text-center mt-4 self-start font-text ml-4 "> {item.producto}</h2>
-                    <h2 className=" whitespace-nowrap self-center row-start-2 ml-8 font-text text-lg"> <span className="text-green-500">Disponible: </span> 3000 </h2>
-                    <h2 className=" self-center text-right mr-9 row-start-2 ml-4 font-text text-lg"> $70000</h2>
+                    <h2 className=" overflow-hidden whitespace-nowrap text-ellipsis row-start-1 col-span-2 text-xl text-center mt-4 self-start font-text ml-4 "> {useNameandPrice(String(item.producto)).nombre} </h2>
+                    <h2 className=" whitespace-nowrap self-center row-start-2 ml-8 font-text text-lg"> <span className="text-green-500">Disponible: </span>  </h2>
+                    <h2 className=" self-center text-right mr-9 row-start-2 ml-4 font-text text-lg">${useNameandPrice(String(item.producto)).precio}</h2>
                     <div className="flex items-center justify-center col-start-2 row-start-3 ml-4 col-span-2 ">
                         <button onClick={(e)=> handledeleteProduct(e, item.producto)} className=" w-10/12 h-3/4 rounded-lg font-text text-sm bg-[#fd9200]"> Eliminar del carrito </button>
                     </div>

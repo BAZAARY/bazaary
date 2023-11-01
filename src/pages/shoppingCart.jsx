@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import LoadingPage from "../components/LoadingPage";
-import imageExample from "../components/img/61WikOg1SQL._AC_AA180_.jpg"
 import ProductItem from "../components/ProductItem";
 import { get_products } from "../connections/cartqueries";
 import { getId } from "../components/helpers/getId";
@@ -34,7 +33,7 @@ const ShoppingCart = () => {
         <div className="overflow-auto flex flex-col items-center md:flex-row md:items-start">
             <div className="mt-5 w-11/12 md:w-2/3 md:mt-20 md:ml-14">
                 {products.map((item, index) => (
-                    <ProductItem key={index} imageExample={imageExample} index={index} item={item} setProducts={setProducts} id={userId}/>
+                    <ProductItem key={index} index={index} item={item} setProducts={setProducts} id={userId}/>
                 ))}
             </div>
             <div className="mt-5 w-11/12 md:flex md:justify-center md:mt-20 md:w-2/5">
