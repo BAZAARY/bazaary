@@ -11,12 +11,28 @@ import Preview from "./components/AddingItemsComponents/Preview";
 import ShoppingCart from "./pages/shoppingCart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import { ApolloProvider } from "@apollo/client";
 import client from "./connections/apollo";
 
 const App = () => {
 	return (
 		<ApolloProvider client={client}>
+			<ToastContainer
+				position="bottom-right"
+				autoClose={2000}
+				limit={1}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="colored"
+				bodyClassName={"toastBody"}
+				/>
 			<Routes>
 				<Route element={<Navbar />}>
 					<Route path="/home" element={<HomePage />} />

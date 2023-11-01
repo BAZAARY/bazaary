@@ -10,3 +10,13 @@ export const get_products = gql`
         }
     }
 `;
+
+export const addProduct = gql`
+    mutation addproduct($usuario: Int!, $producto: Int!){
+        addproduct(usuario:$usuario, producto:$producto){
+            producto
+            cantidad
+            estadoCompra
+        }
+    }
+`;
