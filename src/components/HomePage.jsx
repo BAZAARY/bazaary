@@ -24,7 +24,7 @@ function HomePage() {
           usuario: userId,
           producto
         },
-      }).then(response => {
+      }).then(() => {
         toast.success('¡Se ha añadido el producto a tu carrito!');
       })
       .catch(error => {

@@ -1,9 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const get_products = gql`
-    query{
-        products(usuario:""){
-            usuario
+    query userProducts($usuario: Int!){
+        products(usuario:$usuario){
             producto
             cantidad
             estadoCompra    
@@ -18,5 +17,11 @@ export const addProduct = gql`
             cantidad
             estadoCompra
         }
+    }
+`;
+
+export const deleteProduct = gql`
+    mutation deleteproduct($usuario: Int!, $producto: Int!){
+        deleteproduct(usuario:$usuario, producto:$producto)
     }
 `;

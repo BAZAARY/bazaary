@@ -1,8 +1,29 @@
 import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { deleteProduct } from "../connections/cartqueries";
+import { toast } from "react-toastify";
 
-
-const ProductItem = ({product, index, imageExample}) => {
+const ProductItem = ({item, index, imageExample, id, setProducts}) => {
+    const userId= id
+    const [deleteItem] = useMutation(deleteProduct)
     const [quantity, setQuantity] = useState(1);
+
+    const handledeleteProduct = (e, producto) => {
+        e.preventDefault();
+        deleteItem({
+          variables: {
+            usuario: userId,
+            producto
+          },
+        }).then(() => {
+            setProducts((prevProducts) => prevProducts.filter((p) => p !== item));
+            console.log("Producto eliminado")
+        })
+        .catch(error => {
+            console.error("Promesa rechazada:", error);
+            toast.error('Hubo un error quitando tu producto... Intenta de nuevo');
+        })
+    };
 
     const increment = () =>{
         setQuantity(quantity+1)
@@ -26,11 +47,11 @@ const ProductItem = ({product, index, imageExample}) => {
                         </div>
                         <span className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50" onClick={increment}> + </span>
                     </div>                                    
-                    <h2 className=" overflow-hidden whitespace-nowrap text-ellipsis row-start-1 col-span-2 text-xl text-center mt-4 self-start font-text ml-4 "> {product.producto}</h2>
+                    <h2 className=" overflow-hidden whitespace-nowrap text-ellipsis row-start-1 col-span-2 text-xl text-center mt-4 self-start font-text ml-4 "> {item.producto}</h2>
                     <h2 className=" whitespace-nowrap self-center row-start-2 ml-8 font-text text-lg"> <span className="text-green-500">Disponible: </span> 3000 </h2>
                     <h2 className=" self-center text-right mr-9 row-start-2 ml-4 font-text text-lg"> $70000</h2>
                     <div className="flex items-center justify-center col-start-2 row-start-3 ml-4 col-span-2 ">
-                        <button className=" w-10/12 h-3/4 rounded-lg font-text text-sm bg-[#fd9200]"> Eliminar del carrito </button>
+                        <button onClick={(e)=> handledeleteProduct(e, item.producto)} className=" w-10/12 h-3/4 rounded-lg font-text text-sm bg-[#fd9200]"> Eliminar del carrito </button>
                     </div>
                     <div className="flex items-center justify-center col-start-2 row-start-4 ml-4 col-span-2 ">
                         <button className="w-10/12 h-3/4 rounded-lg font-text text-sm bg-[#fd9200]"> Guardar para más tarde </button>                                   

@@ -3,10 +3,24 @@ import LoadingPage from "../components/LoadingPage";
 import imageExample from "../components/img/61WikOg1SQL._AC_AA180_.jpg"
 import ProductItem from "../components/ProductItem";
 import { get_products } from "../connections/cartqueries";
+import { getId } from "../components/helpers/getId";
 import { useQuery, useMutation } from "@apollo/client";
 
 const ShoppingCart = () => {
-    const {loading, error, data} = useQuery(get_products);
+    const userId = getId()
+    const [products, setProducts] = useState([]);
+    const {loading, error, data} = useQuery(get_products, {
+        variables:{
+            usuario: userId
+        },
+        fetchPolicy: 'network-only'
+    });
+
+    useEffect(()=> {
+        if(data){
+            setProducts(data.products)
+        }
+    }, [data])
 
     if (loading) {
       return <LoadingPage />;
@@ -15,13 +29,12 @@ const ShoppingCart = () => {
     if (error) {
       console.error("Error:", error);
     }
-    const products = data.products;
 
     return(
         <div className="overflow-auto flex flex-col items-center md:flex-row md:items-start">
             <div className="mt-5 w-11/12 md:w-2/3 md:mt-20 md:ml-14">
-                {products.map((product, index) => (
-                    <ProductItem key={index} imageExample={imageExample} index={index} product={product}/>
+                {products.map((item, index) => (
+                    <ProductItem key={index} imageExample={imageExample} index={index} item={item} setProducts={setProducts} id={userId}/>
                 ))}
             </div>
             <div className="mt-5 w-11/12 md:flex md:justify-center md:mt-20 md:w-2/5">
