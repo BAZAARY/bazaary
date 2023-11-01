@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { postLogin, postLoginGoogle, getPrueba } from "../conections/requests";
-// import { Alert } from "../components/alerts/alerts";
 import Swal from "sweetalert2";
 import { GoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { useQuery, useMutation } from "@apollo/client";
-import { GET_USERS, LOGIN_USER, LOGIN_GOOGLE_USER } from "../connections/queries";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER, LOGIN_GOOGLE_USER } from "../connections/queries";
 
 const Login = () => {
 	const [loginUser] = useMutation(LOGIN_USER);

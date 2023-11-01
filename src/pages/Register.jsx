@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { postLogin, postLoginGoogle, getPrueba } from "../conections/requests";
-// import { Alert } from "../components/alerts/alerts";
 import Swal from "sweetalert2";
-import { useQuery, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { REGISTER_USER } from "../connections/queries";
 
 const Register = () => {

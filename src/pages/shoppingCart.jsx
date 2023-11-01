@@ -4,7 +4,7 @@ import imageExample from "../components/img/61WikOg1SQL._AC_AA180_.jpg"
 import ProductItem from "../components/ProductItem";
 import { get_products } from "../connections/cartqueries";
 import { getId } from "../components/helpers/getId";
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery} from "@apollo/client";
 
 const ShoppingCart = () => {
     const userId = getId()

@@ -8,6 +8,7 @@ const ProductItem = ({item, index, imageExample, id, setProducts}) => {
     const [deleteItem] = useMutation(deleteProduct)
     const [quantity, setQuantity] = useState(1);
 
+    // Eliminar producto
     const handledeleteProduct = (e, producto) => {
         e.preventDefault();
         deleteItem({
@@ -24,6 +25,9 @@ const ProductItem = ({item, index, imageExample, id, setProducts}) => {
             toast.error('Hubo un error quitando tu producto... Intenta de nuevo');
         })
     };
+
+    // Llamada a Catalogo para obtener información
+    
 
     const increment = () =>{
         setQuantity(quantity+1)
