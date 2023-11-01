@@ -4,7 +4,6 @@ import { deleteProduct } from "../connections/cartqueries";
 import useImageUrl from "./helpers/useImageUrl";
 import useNameandPrice from "./helpers/useNameandPrice";
 import { toast } from "react-toastify";
-import LoadingPage from "./LoadingPage";
 
 const ProductItem = ({item, index, id, setProducts}) => {
     const userId= id

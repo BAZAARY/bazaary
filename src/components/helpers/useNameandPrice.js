@@ -9,11 +9,8 @@ function useNameandPrice(productId){
     })
     if(error) return {error: error.message}
     if (data && data.getProductNameAndPriceWithId[0]){
-        console.log(data)
         const nombre = data.getProductNameAndPriceWithId[0].name
-        console.log("soy nombre", nombre)
         const precio = data.getProductNameAndPriceWithId[0].price
-        console.log("soy precio", precio)
         return {nombre, precio}
     }
 }
