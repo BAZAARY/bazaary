@@ -121,3 +121,14 @@
     grid-column: 6;
     grid-row: 1;
 }
+
+.grid-item-buy {
+    width: 30px;
+    min-width:30px;
+    height: 20px;
+    min-height: 20px;
+    background-color:  #FA6C19;
+    font-size: 12px;
+    grid-column: 1;
+    grid-row: 1;
+}
