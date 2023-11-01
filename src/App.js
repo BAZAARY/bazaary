@@ -13,8 +13,11 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Invoice from "./pages/Invoice";
 import { ApolloProvider } from "@apollo/client";
 import client from "./connections/apollo";
+import Profile from "./pages/Profile";
+import PersonalInformation from "./pages/PersonalInformation";
 
 const App = () => {
 	return (
@@ -45,9 +48,17 @@ const App = () => {
 					</Route>
 					/
 					<Route path="/cart" element={<ShoppingCart />} />
+					<Route path="/invoice/:id" element={<Invoice />} /> {/* Nueva ruta para la factura */}
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
+					<Route path="/cart" element={<ShoppingCart />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
+					<Route path="/register" element={<Register />} />
+					<Route path="/profile" element={<Profile />} />
+					<Route path="/profile/personalinformation" element={<PersonalInformation />} />
 				</Route>
+
 			</Routes>
 		</ApolloProvider>
 	);
