@@ -1,16 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import LoadingPage from "../components/LoadingPage";
+import ProductItem from "../components/ProductItem";
+import { get_products } from "../connections/cartqueries";
+import { getId } from "../components/helpers/getId";
+import { useQuery} from "@apollo/client";
 
 const ShoppingCart = () => {
+    const userId = getId()
+    const [products, setProducts] = useState([]);
+    const {loading, error, data} = useQuery(get_products, {
+        variables:{
+            usuario: userId
+        },
+        fetchPolicy: 'network-only'
+    });
+
+    useEffect(()=> {
+        if(data){
+            setProducts(data.products)
+        }
+    }, [data])
+
+    if (loading) {
+      return <LoadingPage />;
+    }
+  
+    if (error) {
+      console.error("Error:", error);
+    }
 
     return(
-        <div className="flex-row md:flex">
-            <div className="flex ml-16 mt-24 w-5/6 h-screen">
-                <div className="w-full h-3/4 bg-[#ffdcb7]">
-                
-                </div>
+        <div className="overflow-auto flex flex-col items-center md:flex-row md:items-start">
+            <div className="mt-5 w-11/12 md:w-2/3 md:mt-20 md:ml-14">
+                {products.map((item, index) => (
+                    <ProductItem key={index} index={index} item={item} setProducts={setProducts} id={userId}/>
+                ))}
             </div>
-            <div className="flex w-1/4 mx-16 mt-24 h-screen justify-center">
-                <div className=" w-3/4 h-2/5 bg-[#ffdcb7]">
+            <div className="mt-5 w-11/12 md:flex md:justify-center md:mt-20 md:w-2/5">
+                <div className="rounded-lg shadow-xl h-44 mb-5 bg-[#d9d9d9] md:w-2/4 md:h-60 md:rounded-sm">
 
                 </div>
             </div>
