@@ -16,8 +16,8 @@ const ShoppingCart = () => {
     });
 
     useEffect(()=> {
-        if(data){
-            setProducts(data.products)
+        if(data && data.listuserproducts){
+            setProducts(data.listuserproducts)
         }
     }, [data])
 

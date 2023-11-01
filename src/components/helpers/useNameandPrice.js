@@ -8,7 +8,7 @@ function useNameandPrice(productId){
         }
     })
     if(error) return {error: error.message}
-    if (data){
+    if (data && data.getProductNameAndPriceWithId[0]){
         console.log(data)
         const nombre = data.getProductNameAndPriceWithId[0].name
         console.log("soy nombre", nombre)
