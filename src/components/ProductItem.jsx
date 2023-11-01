@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { deleteProduct } from "../connections/cartqueries";
+import { getAPIFastAPIURL } from "./FastAPIURL/fastapicon";
+import useImageUrl from "./helpers/useImageUrl";
 import { toast } from "react-toastify";
 
 const ProductItem = ({item, index, imageExample, id, setProducts}) => {
@@ -26,9 +28,6 @@ const ProductItem = ({item, index, imageExample, id, setProducts}) => {
         })
     };
 
-    // Llamada a Catalogo para obtener información
-    
-
     const increment = () =>{
         setQuantity(quantity+1)
     }
@@ -38,12 +37,12 @@ const ProductItem = ({item, index, imageExample, id, setProducts}) => {
             setQuantity(quantity-1)
         }
     }
-
+        
     return(
         <>
             <div id={`Producto ${index}`} className="rounded-lg shadow-xl w-full h-52 mb-5 bg-[#d9d9d9] md:h-60 md:rounded-sm">
                 <div className="grid grid-rows-4 grid-cols-3 grid-flow-row h-full"> 
-                    <img alt={`Imagen producto ${index}`} src={imageExample} className=" row-start-1 row-end-4 self-center row-span-3 ml-4 rounded-2xl h-4/5 w-11/12 "/>
+                    <img alt={`Imagen producto ${index}`} src={useImageUrl(String(item.producto)).url} className=" row-start-1 row-end-4 self-center row-span-3 ml-4 rounded-2xl h-4/5 w-11/12 "/>
                     <div className=" row-start-4 ml-6 justify-center flex items-center border-gray-100">
                         <span className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50" onClick={decrement}> - </span>
                         <div className="flex justify-center items-center h-8 w-16 border bg-white text-center text-xs outline-none">                                        
