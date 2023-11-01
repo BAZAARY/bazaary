@@ -26,7 +26,6 @@ const Login = () => {
 		event.preventDefault(); // Prevenir comportamiento de envío predeterminado
 		const lowercaseEmail = formData.email.toLowerCase(); // Convertir el campo de email a minúsculas
 
-		console.log(formData); // Imprimir los datos del formulario en la consola
 		const myresponse = async () => {
 
 			// Realizar solicitud de inicio de sesión utilizando los datos del formulario
@@ -44,7 +43,6 @@ const Login = () => {
 					},
 				});
 
-				console.log(response);
 				localStorage.setItem("token", response["data"]["loginUser"].token)
 				// Si las credenciales son correctas, mostrar una alerta de éxito y navegar a la página de inicio ("/home")
 				Swal.fire({
@@ -77,7 +75,6 @@ const Login = () => {
 	const handleGoogleLogin = (credentialResponse) => {
 		localStorage.clear()
 		window.localStorage.clear()
-		console.log(credentialResponse); // Imprimir los datos del formulario en la consola
 		const myresponse = async () => {
 			// Realizar solicitud de inicio de sesión utilizando los datos del formulario
 			const req_succesful = await loginGoogleUser({
@@ -89,7 +86,6 @@ const Login = () => {
 				},
 			});
 			localStorage.setItem("token", req_succesful["data"]["loginUser"].token)
-			console.log(req_succesful);
 			if (req_succesful.data.loginGoogleUser.message === "Inicio de sesión (Google) exitoso") {
 				// Si las credenciales son correctas, mostrar una alerta de éxito y navegar a la página de inicio ("/home")
 				Swal.fire({
@@ -115,7 +111,7 @@ const Login = () => {
 			<div className="md:flex md:flex-row w-full">
 				{/* PARTE DERECHA */}
 				<form onSubmit={handleSubmit} className="flex w-full justify-center items-center">
-					<div className="flex p-4 flex flex-col justify-center h-full w-full md:bg-[#ffdcb7] max-w-md md:border-2 md:border-gray-100 rounded-3xl mt-8 md:mt-16">
+					<div className="flex p-4 flex-col justify-center h-full w-full md:bg-[#ffdcb7] max-w-md md:border-2 md:border-gray-100 rounded-3xl mt-8 md:mt-16">
 						{/* CAMPO DE EMAIL, PASSWORD, BOTON DE LOGIN */}
 						<div className="flex flex-col items-center justify-center">
 							<p className="font-bold text-3xl py-8">Iniciar sesión</p>
@@ -126,14 +122,14 @@ const Login = () => {
 								<input
 									id="email"
 									type="text"
-									className="max-w-sm w-full h-full text-center border-2 rounded-xl border focus:outline-none mb-4 focus:border-custom-rojo focus:ring-0"
+									className="max-w-sm w-full h-full text-center border-2 rounded-xl focus:outline-none mb-4 focus:border-custom-rojo focus:ring-0"
 									placeholder="E-mail"
 									onChange={(e) => setFormData({ ...formData, email: e.target.value })}
 								/>
 								<input
 									id="password"
 									type="password"
-									className="max-w-sm w-full h-full text-center border-2 rounded-xl border focus:outline-none mb-4 focus:border-custom-rojo focus:ring-0"
+									className="max-w-sm w-full h-full text-center border-2 rounded-xl focus:outline-none mb-4 focus:border-custom-rojo focus:ring-0"
 									placeholder="Contraseña"
 									onChange={(e) => setFormData({ ...formData, contrasena: e.target.value })}
 								/>

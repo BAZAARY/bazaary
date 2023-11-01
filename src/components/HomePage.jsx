@@ -19,14 +19,12 @@ function HomePage() {
 
   const handleAddProduct = (e, producto) => {
       e.preventDefault();
-      console.log(userId)
       userAddProduct({
         variables: {
           usuario: userId,
           producto
         },
       }).then(response => {
-        console.log("enviado", response);
         toast.success('¡Se ha añadido el producto a tu carrito!');
       })
       .catch(error => {

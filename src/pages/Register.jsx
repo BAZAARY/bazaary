@@ -20,11 +20,6 @@ const Register = () => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault(); // Prevenir comportamiento de envío predeterminado
-		const lowercaseEmail = formData.email.toLowerCase(); // Convertir el campo de email a minúsculas
-		console.log(lowercaseEmail);
-
-		console.log(formData); // Imprimir los datos del formulario en la consola
-
 		if (formData["contrasena"].length < 6) {
 			// Validar longitud mínima de contraseña
 			Swal.fire({
@@ -125,7 +120,7 @@ const Register = () => {
 			<div className="md:flex md:flex-row w-full ">
 				{/* PARTE DERECHA */}
 				<form onSubmit={handleSubmit} className="flex w-full justify-center items-center">
-					<div className="flex p-4 flex flex-col justify-center h-full w-full md:bg-[#ffdcb7] max-w-md md:border-2 md:border-gray-100 rounded-3xl mt-8 md:mt-16">
+					<div className="flex p-4 flex-col justify-center h-full w-full md:bg-[#ffdcb7] max-w-md md:border-2 md:border-gray-100 rounded-3xl mt-8 md:mt-16">
 						{/* CAMPO DE EMAIL, PASSWORD, BOTON DE REGISTER */}
 						<div className="flex flex-col items-center justify-center">
 							<p className="font-bold text-3xl py-6">Registrarse</p>
@@ -136,27 +131,27 @@ const Register = () => {
 								<input
 									id="nombre_usuario"
 									type="text"
-									className="max-w-sm w-full h-full text-center border-2 rounded-xl border focus:outline-none mb-4 focus:border-custom-rojo focus:ring-0"
+									className="max-w-sm w-full h-full text-center border-2 rounded-xl focus:outline-none mb-4 focus:border-custom-rojo focus:ring-0"
 									placeholder="Nombre"
 									onChange={(e) => setFormData({ ...formData, nombre_usuario: e.target.value })}
 								/>
 								<input
 									id="email"
 									type="email"
-									className="max-w-sm w-full h-full text-center border-2 rounded-xl border focus:outline-none mb-4 focus:border-custom-rojo focus:ring-0"
+									className="max-w-sm w-full h-full text-center border-2 rounded-xl focus:outline-none mb-4 focus:border-custom-rojo focus:ring-0"
 									placeholder="E-mail"
 									onChange={(e) => setFormData({ ...formData, email: e.target.value })}
 								/>
 								<input
 									id="password"
 									type="password"
-									className="max-w-sm w-full h-full text-center border-2 rounded-xl border focus:outline-none mb-4 focus:border-custom-rojo focus:ring-0"
+									className="max-w-sm w-full h-full text-center border-2 rounded-xl focus:outline-none mb-4 focus:border-custom-rojo focus:ring-0"
 									placeholder="Contraseña"
 									onChange={(e) => setFormData({ ...formData, contrasena: e.target.value })}
 								/>
 								<input
 									type="password"
-									className="max-w-sm w-full h-full text-center border-2 rounded-xl border focus:outline-none mb-4 focus:border-custom-rojo focus:ring-0"
+									className="max-w-sm w-full h-full text-center border-2 rounded-xl focus:outline-none mb-4 focus:border-custom-rojo focus:ring-0"
 									placeholder="Repetir contraseña"
 									onChange={(e) => setConfirmedPassword(e.target.value)}
 								/>
