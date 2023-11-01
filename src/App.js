@@ -18,6 +18,7 @@ import { ApolloProvider } from "@apollo/client";
 import client from "./connections/apollo";
 import Profile from "./pages/Profile";
 import PersonalInformation from "./pages/PersonalInformation";
+import CommentForm from "./pages/commentForm";
 
 const App = () => {
 	return (
@@ -57,6 +58,7 @@ const App = () => {
 					<Route path="/register" element={<Register />} />
 					<Route path="/profile" element={<Profile />} />
 					<Route path="/profile/personalinformation" element={<PersonalInformation />} />
+					<Route path="/comment" element={<CommentForm />} />
 				</Route>
 
 			</Routes>
