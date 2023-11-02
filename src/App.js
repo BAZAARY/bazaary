@@ -33,7 +33,7 @@ const App = () => {
 					<Route path="/cart" element={<ShoppingCart />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
-					<Route path="/search" element={<SearchBar />} />
+					 <Route path="/search" element={<SearchBar />} />
 				</Route>
 			</Routes>
 		</ApolloProvider>

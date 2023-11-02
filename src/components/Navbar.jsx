@@ -1,42 +1,66 @@
-import React from 'react';
-import LogoImage from './img/bazaary.jpeg'
-import CartImage from './img/cart.png'
-import ProfileImage from './img/profile-picture.webp'
-import SellImage from './img/sell.png'
-import './Navbar.css'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
+import SearchBar from "../pages/searchBar";
+
+import LogoImage from './img/bazaary.jpeg';
+import CartImage from './img/cart.png';
+import ProfileImage from './img/profile-picture.webp';
+import SellImage from './img/sell.png';
+import './Navbar.css';
 
 function Navbar() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      navigate(`/search?query=${searchValue}`);
+      setSearchValue(''); // Limpiar el valor de búsqueda después de presionar Enter
+    }
+  };
   return (
     <>
       <div className="navbar">
-        <div onClick={()=> navigate("/")} className="circular-logo hidden md:block">
+        <div onClick={() => navigate("/")} className="circular-logo hidden md:block">
           <img src={LogoImage} alt="Logo" />
         </div>
         <div className='font-text text-3xl pl-5 hidden md:block '>
           Bazaary
         </div>
         <div className="search-bar md:ml-7">
-          <input id="search-bar-input" type="text" placeholder=" &#8981; Buscar..." className=" w-11/12 md:w-3/4 font-text input-text" />
+          <input
+            id="search-bar-input"
+            type="text"
+            placeholder=" &#8981; Buscar..."
+            className="w-11/12 md:w-3/4 font-text input-text"
+            value={searchValue}
+            onChange={handleSearchChange}
+            onKeyPress={handleKeyPress}
+          />
         </div>
         <div className="for-sale">
           <a href={"/addingitem/category"}>
             <img src={SellImage} alt="Carrito de Compras" />
           </a>
         </div>
-        <div onClick={()=> navigate("/cart")} className="shopping-cart">
+        <div onClick={() => navigate("/cart")} className="shopping-cart">
           <img src={CartImage} alt="Carrito de Compras" />
         </div>
         <div className="profile-picture">
           <img src={ProfileImage} alt="Foto de Perfil" />
         </div>
       </div>
-      <main className="App-content">{/**Se usa para renderizar los hijos: HomePage, etc*/}
+      <main className="App-content">
+        <SearchBar searchValue={searchValue} />
         <Outlet />
       </main>
     </>
   );
 }
+
 export default Navbar;
