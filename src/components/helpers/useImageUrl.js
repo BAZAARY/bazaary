@@ -11,7 +11,6 @@ function useImageUrl(productId){
     if (data && data.getImageAIdWithProductId){
         const imageId = data.getImageAIdWithProductId
         const url = `https://drive.google.com/uc?id=${imageId}`
-        console.log("Soy url", url)
         return {url}
     }
 }
