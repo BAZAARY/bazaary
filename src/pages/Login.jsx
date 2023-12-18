@@ -19,13 +19,12 @@ const Login = () => {
 
 	//MANEJAR EL LOGIN NORMAL (SIN GOOGLE)
 	const handleSubmit = (event) => {
-		localStorage.clear()
-		window.localStorage.clear()
+		localStorage.clear();
+		window.localStorage.clear();
 		event.preventDefault(); // Prevenir comportamiento de envío predeterminado
 		const lowercaseEmail = formData.email.toLowerCase(); // Convertir el campo de email a minúsculas
 
 		const myresponse = async () => {
-
 			// Realizar solicitud de inicio de sesión utilizando los datos del formulario
 			// const req_succesful = await postLogin({
 			// 	...formData,
@@ -41,7 +40,7 @@ const Login = () => {
 					},
 				});
 
-				localStorage.setItem("token", response["data"]["loginUser"].token)
+				localStorage.setItem("token", response["data"]["loginUser"].token);
 				// Si las credenciales son correctas, mostrar una alerta de éxito y navegar a la página de inicio ("/home")
 				Swal.fire({
 					title: "Bienvenido a Bazaary",
@@ -71,8 +70,8 @@ const Login = () => {
 
 	//MANEJAR EL LOGIN CON GOOGLE
 	const handleGoogleLogin = (credentialResponse) => {
-		localStorage.clear()
-		window.localStorage.clear()
+		localStorage.clear();
+		window.localStorage.clear();
 		const myresponse = async () => {
 			// Realizar solicitud de inicio de sesión utilizando los datos del formulario
 			const req_succesful = await loginGoogleUser({
@@ -83,7 +82,7 @@ const Login = () => {
 					},
 				},
 			});
-			localStorage.setItem("token", req_succesful["data"]["loginUser"].token)
+			localStorage.setItem("token", req_succesful["data"]["loginGoogleUser"].token);
 			if (req_succesful.data.loginGoogleUser.message === "Inicio de sesión (Google) exitoso") {
 				// Si las credenciales son correctas, mostrar una alerta de éxito y navegar a la página de inicio ("/home")
 				Swal.fire({
